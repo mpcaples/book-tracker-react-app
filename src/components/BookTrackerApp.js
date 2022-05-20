@@ -17,12 +17,15 @@ export default class BookTrackerApp extends React.Component {
         
         this.setState((prevState) =>  ({book_list: prevState.book_list.concat([book])}))
     }
+    handleDeleteBookList = () => {
+        this.setState(() => ({book_list: []})); 
+    }
     render() {
         return (
             <div>
                 <Header />
                 <AddBook handleAddBook={this.handleAddBook} />
-                <BookList book_list={this.state.book_list}/>
+                <BookList book_list={this.state.book_list} handleDeleteBookList={this.handleDeleteBookList} />
                 <TotalBooks total_books={this.state.book_list.length} />
             </div> 
         )
