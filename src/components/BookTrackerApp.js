@@ -1,13 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from './Header';
 import BookList from './BookList';  
 import AddBook from './AddBook';
 import TotalBooks from './TotalBooks';
 
-export default class BookTrackerApp extends React.Component {
-    state = {
-        book_list: this.props.book_list
-    }
+const BookTrackerApp = () => {
+    const [book_list, setBook_list] = useState([]); 
     // componentDidMount() {
     //     try {
     //         const json = localStorage.getItem('books');
@@ -29,25 +27,26 @@ export default class BookTrackerApp extends React.Component {
     handleAddBook = (book) => {
         if (!book) {
             return 'Enter valid value to add a book';
-        } else if (this.state.book_list.indexOf(book) >-1) {
+        } 
+        if (book_list.indexOf(book) >-1) {
             return 'This book is already on your list!';
         }
         
-        this.setState((prevState) =>  ({book_list: prevState.book_list.concat([book])}))
+        setBook_list(book_list.concat([book]))
     }
     handleDeleteBookList = () => {
-        this.setState(() => ({book_list: []})); 
+        setBook_list([]); 
     }
-    render() {
-        return (
+    
+    return (
             <div>
                 <Header />
-                <AddBook handleAddBook={this.handleAddBook} />
-                <BookList book_list={this.state.book_list} handleDeleteBookList={this.handleDeleteBookList} />
-                <TotalBooks total_books={this.state.book_list.length} />
+                <AddBook handleAddBook={handleAddBook} />
+                <BookList book_list={book_list} handleDeleteBookList={handleDeleteBookList} />
+                <TotalBooks total_books={book_list.length} />
             </div> 
         )
-    }
+    
     
 }
 
