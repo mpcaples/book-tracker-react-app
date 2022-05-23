@@ -3,6 +3,7 @@ import Header from './Header';
 import BookList from './BookList';  
 import AddBook from './AddBook';
 import TotalBooks from './TotalBooks';
+import Counter from './Counter'; 
 
 const BookTrackerApp = () => {
     const [book_list, setBook_list] = useState([]); 
@@ -24,7 +25,7 @@ const BookTrackerApp = () => {
     //         localStorage.setItem('books', json); 
     //     }
     // }
-    handleAddBook = (book) => {
+    const handleAddBook = (book) => {
         if (!book) {
             return 'Enter valid value to add a book';
         } 
@@ -34,7 +35,7 @@ const BookTrackerApp = () => {
         
         setBook_list(book_list.concat([book]))
     }
-    handleDeleteBookList = () => {
+    const handleDeleteBookList = () => {
         setBook_list([]); 
     }
     
@@ -44,12 +45,11 @@ const BookTrackerApp = () => {
                 <AddBook handleAddBook={handleAddBook} />
                 <BookList book_list={book_list} handleDeleteBookList={handleDeleteBookList} />
                 <TotalBooks total_books={book_list.length} />
+                <Counter />
             </div> 
         )
     
     
 }
 
-BookTrackerApp.defaultProps = {
-    book_list: []
-}; 
+export default BookTrackerApp; 

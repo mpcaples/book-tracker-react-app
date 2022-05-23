@@ -1,30 +1,29 @@
-import React from 'react'; 
+import React, {useState} from 'react'; 
 
-export default class AddBook extends React.Component {
-    state = {
-        error: undefined
-    }; 
-    handleAddBook = (e) => {
+const AddBook = (props) => {
+    const [error, setError] = useState(undefined);  
+    const handleAddBook = (e) => {
         e.preventDefault(); 
 
         const book = e.target.elements.book.value.trim();
-        const error = this.props.handleAddBook(book);
+        const error = props.handleAddBook(book);
         
-        this.setState(() => ({error: error}));
+        setError(error);
         
         if (!error) {
             e.target.elements.book.value = '';
         }
     }
-    render() {
-        return (
+    
+    return (
             <div>
                 
-                <form onSubmit={this.handleAddBook}>
+                <form onSubmit={handleAddBook}>
                     <input type="text" name="book"/>
                     <button>Add Book</button>
                 </form>
             </div>
         )
-    }
 }
+
+export default AddBook; 
