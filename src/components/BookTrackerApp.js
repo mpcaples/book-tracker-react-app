@@ -8,24 +8,24 @@ export default class BookTrackerApp extends React.Component {
     state = {
         book_list: this.props.book_list
     }
-    componentDidMount() {
-        try {
-            const json = localStorage.getItem('books');
-            const books = JSON.parse(json); 
+    // componentDidMount() {
+    //     try {
+    //         const json = localStorage.getItem('books');
+    //         const books = JSON.parse(json); 
             
-            if (books) {
-                this.setState(() => ({book_list: books})); 
-            }
-        } catch (e) {
-            // do nothin at all 
-        }
-    }
-    componentDidUpdate(prevState) {
-        if (prevState.book_list.length !== this.state.book_list.length) {
-            const json = JSON.stringify(this.state.book_list)
-            localStorage.setItem('books', json); 
-        }
-    }
+    //         if (books) {
+    //             this.setState(() => ({book_list: books})); 
+    //         }
+    //     } catch (e) {
+    //         // do nothin at all 
+    //     }
+    // }
+    // componentDidUpdate(prevState) {
+    //     if (prevState.book_list.length !== this.state.book_list.length) {
+    //         const json = JSON.stringify(this.state.book_list)
+    //         localStorage.setItem('books', json); 
+    //     }
+    // }
     handleAddBook = (book) => {
         if (!book) {
             return 'Enter valid value to add a book';
