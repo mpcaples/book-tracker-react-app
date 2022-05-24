@@ -45,6 +45,7 @@ const AddBook = () => {
     return (
             <div>
                 {error && <p>{error}</p>}
+                <label for="book">Book:</label>
                 <input value={inputValue} onChange={handleInputChange} type="text" name="book"/>
                 <button onClick={onAddBook}>Add Book</button>   
                 
