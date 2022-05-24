@@ -1,21 +1,24 @@
 import React from 'react';
 import Book from './Book'; 
 
-
-function BookList(props) {
+function BookList({bookList, onDeleteBookList, onDeleteSingleBook}) {
     return (
         <div>
-        {props.book_list.length === 0 && <p>Please Add a book to get started</p>}
+        {bookList.length === 0 && <p>Please Add a book to get started</p>}
+        <ul>
         {
-            props.book_list.map((book, index) => (
+            bookList.map((book, index) => (
+            <li key={book} style={{listStyle:"none"}}>
                 <Book
-                    key={book} 
-                    bookText={book}
-                    count={index+1}
+                bookText={book}
+                count={index+1}
+                onDeleteSingleBook={onDeleteSingleBook}
                 />
+            </li>
             ))
         } 
-        {props.book_list.length > 0 && <button onClick={props.handleDeleteBookList}>Remove All Books</button>}
+        </ul>
+        {bookList.length > 0 && <button onClick={onDeleteBookList}>Remove All Books</button>}
         </div>
     );
 }

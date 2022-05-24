@@ -1,9 +1,13 @@
 import React from 'react'; 
 
-function Book(props) {
+function Book({count, bookText, onDeleteSingleBook}) {
     return (
         <div>
-            <p>{props.count}. {props.bookText}</p> 
+            <p>
+                {count}. {bookText}
+                <button onClick={() => onDeleteSingleBook(bookText)}>Delete Book</button>
+            </p> 
+           
         </div>
     )
 }
