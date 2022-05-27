@@ -8,6 +8,10 @@ module.exports = {
     filename: 'bundle.js'},
     devtool: 'inline-source-map',
     devServer: {static: './dist',},
-    module: {rules: [{test: /\.jsx?$/,exclude: /node_modules/,loader: 'babel-loader'},]},
+    module: {
+        rules: [
+            {test: /\.jsx?$/,exclude: /node_modules/,loader: 'babel-loader'}
+          ]
+    },
     resolve: {extensions: ['.jsx', '.ts', '.js'],},
     plugins:[new HtmlWebpackPlugin({template: './index.html'})]}
